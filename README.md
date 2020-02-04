@@ -2,16 +2,16 @@
 
 ## DIA 01
 
-1. O que é Go
+1. [O que é Go](dia_01#o-que-é-go)
 
-    1. Um pouco de história
-    2. Semântica
-    3. Por quê Go?
-    4. Hello World
+    1. [Um pouco de história](dia_01#um-pouco-de-história)
+    2. [Semântica](dia_01#semântica)
+    3. [Por quê Go?](dia_01#por-quê-go)
+    4. [Hello World](dia_01#hello-world)
 
-2. Tipos básicos
+2. [Tipos básicos](dia_01#tipos-básicos)
     
-    1. String
+    1. [String](dia_01#string)
     2. Números
     3. boleanos
 
