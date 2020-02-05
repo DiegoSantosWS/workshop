@@ -249,6 +249,7 @@ func inferData(fN, lN string) {
 }
 ```
 
-# Funções
 
+
+[Proximo Funções]("dia_02/funcoes.md")
 Em construção.
