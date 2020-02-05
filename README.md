@@ -37,8 +37,8 @@
     
 7. [Funções](dia_02/funcoes.md#funções)
 
-    1. Erros
-    2. Métodos
+    1. [Erros](dia_02/funcoes.md#erros)
+    2. [Métodos](dia_02/funcoes.md#metódos)
 
 8. Interfaces
 
