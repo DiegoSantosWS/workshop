@@ -34,7 +34,8 @@
 6. [Structs](dia_02#structs)
     1. [Struct nomeada](dia_02#struct-nomeada)
     2. [Struct anônima](dia_02#struct-anônima)
-7. Funções
+    
+7. [Funções](dia_02/funcoes.md#Funções)
 
     1. Erros
     2. Métodos
