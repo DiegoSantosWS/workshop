@@ -24,19 +24,21 @@
 
 ## DIA 02
 
-5. Estruturas de Controle
+5. [Estruturas de Controle](dia_02#estrutura-de-controle)
 
-    1. if
-    2. switch
-    3. for
-    4. for range
+    1. [if](dia_02#if)
+    2. [switch](dia_02#switch)
+    3. [for](dia_02#for)
+    4. [for range](dia_02#for-range)
 
-6. Structs
+6. [Structs](dia_02#structs)
+    1. [Struct nomeada](dia_02#struct-nomeada)
+    2. [Struct anônima](dia_02#struct-anônima)
+    
+7. [Funções](dia_02/funcoes.md#funções)
 
-7. Funções
-
-    1. Erros
-    2. Métodos
+    1. [Erros](dia_02/funcoes.md#erros)
+    2. [Métodos](dia_02/funcoes.md#metódos)
 
 8. Interfaces
 
