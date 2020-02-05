@@ -62,7 +62,7 @@ func main() {
 }
 ```
 
-### switch
+### Switch
 
 A instrução <code>***switch***</code> expressam condições em através de vários ramos. em ***_Go*** podemos usar vírgula para separar várias expreções em uma mesma condição <code>***case***</code>.
 
@@ -87,8 +87,6 @@ func main() {
 ```
 
 # Exemplo 2
-
-
 
 ```go
 package main
@@ -189,3 +187,47 @@ func retornaNomeVegetal(key int, str string) {
     }
 }
 ```
+
+# Structs
+
+<code>***Stucts***</code> é um tipo de dado agregado que agrupa zero ou mais valores nomeados de tipo quaisquer como uma única entidade. Cada valor é chamado de ***campo***.
+
+### Struct Nomeada
+
+Estrutura no nomeada recebem um nome em sua declaração, para exemplificar criaremos uma strutc para representar um cadastro de funcionário em uma empresa. Seu campos pode ser acessados través da expressão **variaval.Name** veja no exemplo.
+
+```go
+package main
+
+type Employee struct {
+    ID      int
+    Name    string
+    Age     *time.Time
+    Salary  float64
+    Company string
+}
+
+func main() {
+    cl := Employee{}
+    //forma de acesso
+    cl.ID = 1
+    cl.Name = "Diego dos Santos"
+    cl.Age = nil
+    cl.Salary = 100.55
+    cl.Company = "Fliper"
+    fmt.Println("o nome é:", cl.Name, " trabalha na empresa: ", cl.Company)
+    //oura forma de popular structs
+    cl1 := Employee{
+        ID:      1,
+        Name:    "Francisco Oliveira",
+        Age:     nil,
+        Salary:  2000.50,
+        Company: "Iron Mountain",
+    }
+    fmt.Println("o nome é:", cl1.Name, " trabalha na empresa: ", cl1.Company)
+
+}
+```
+
+### Struct anônima
+

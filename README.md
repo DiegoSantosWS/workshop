@@ -31,8 +31,9 @@
     3. [for](dia_02#for)
     4. [for range](dia_02#for-range)
 
-6. Structs
-
+6. [Structs](dia_02#structs)
+    1. [Struct nomeada](dia_02#structs-nomeada)
+    2. [Struct anônima](dia_02#structs-anonima)
 7. Funções
 
     1. Erros
