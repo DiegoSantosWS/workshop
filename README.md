@@ -24,7 +24,7 @@
 
 ## DIA 02
 
-5. Estruturas de Controle
+5. [Estruturas de Controle](dia_02#estrutura-de-controle)
 
     1. if
     2. switch
