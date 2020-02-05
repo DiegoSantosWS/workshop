@@ -26,10 +26,10 @@
 
 5. [Estruturas de Controle](dia_02#estrutura-de-controle)
 
-    1. if
-    2. switch
-    3. for
-    4. for range
+    1. [if](dia_02#if)
+    2. [switch](dia_02#switch)
+    3. [for](dia_02#for)
+    4. [for range](dia_02#for-/-for-range)
 
 6. Structs
 
