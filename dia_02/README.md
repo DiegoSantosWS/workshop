@@ -231,3 +231,24 @@ func main() {
 
 ### Struct anônima
 
+Uma <code>***struct***</code> anônima é tipo sem um nome como referência. Sua declaração é como semelhante a uma ***declaração rapída de variável***.
+
+> Só devemos user uma <code>struct</code> anônima quando não há necessida de criar um objeto para o dado que será transpordado por ela.
+
+```go
+package main
+
+func main() {
+    inferData("Diego", "Santos")
+    inferData("Francisco", "Oliveira")
+}
+
+func inferData(fN, lN string) {
+    name1 := struct{FirstName, LastName string}{FirstName: fN, LastName: lN}
+    fmt.Println("O nome é:", name1.FirstName, name1.LastName)
+}
+```
+
+# Funções
+
+Em construção.
