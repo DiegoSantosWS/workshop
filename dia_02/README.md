@@ -121,7 +121,7 @@ func main() {
 }
 ```
 
-# for / for range
+# for
 
 Em outras linguagens temos várias formas de fazer laços de repetição, mas é _Go so temos uma forma, e é usando a palavra reservada <code>***for***</code>.
 
@@ -166,7 +166,7 @@ func main(){
 }
 ```
 
-# Exemplo 3 for range
+# for range
 
 Já vimos as outras formas de usar o <code>***for***</code>, agora falta o <code>***range***</code>. Essa expressão espera recever uma lista "array ou slice"
 
