@@ -33,7 +33,7 @@
 
 6. [Structs](dia_02#structs)
     1. [Struct nomeada](dia_02#struct-nomeada)
-    2. [Struct anônima](dia_02#struct-anonima)
+    2. [Struct anônima](dia_02#struct-anônima)
 7. Funções
 
     1. Erros
