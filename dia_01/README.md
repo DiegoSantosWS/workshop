@@ -122,9 +122,9 @@ Go apresenta várias maneiras de organizar dados, desde tipos que correspodem ao
 
 ### String
 
-Uma string é uma sequência imutável de bytes. Podem conter qualquer dado, mas normalmente contêm texto legível aos seres humanos.
+Uma `string` é uma sequência imutável de `bytes`. Podem conter qualquer dado, mas normalmente contêm texto legível aos seres humanos.
 
-String são convencionalmente interpretadas como sequências de pontos de código **Unicode** (`runas`) codificados em **UTF-8**.
+Strings são convencionalmente interpretadas como sequências de pontos de código **Unicode** (`runas`) codificados em **UTF-8**.
 
 ### Números
 
@@ -145,9 +145,9 @@ Os tipos numéricos em Go incluem vários tamanhos de inteiros, ponto flutuante 
 
 #### Complexos
 
-- complex64, complex128 - São criados pela função `complex`
+- complex64, complex128 - Podem ser criados pela função `complex`
 
-### boleanos
+### Boleanos
 
 - true, false
 

@@ -12,15 +12,16 @@
 2. [Tipos básicos](dia_01#tipos-básicos)
     
     1. [String](dia_01#string)
-    2. Números
-    3. boleanos
+    2. [Números](dia_01#números)
+    3. [Boleanos](dia_01#Boleanos)
 
-3. Variáveis / Constantes / Ponteiros
-4. Tipos Compostos
+3. [Variáveis / Constantes / Ponteiros](dia_01#variáveis--constantes--ponteiros)
+
+4. [Tipos Compostos](dia_01#tipos-compostos)
     
-    1. Array
-    2. Slices
-    3. Maps
+    1. [Array](dia_01#array)
+    2. [Slices](dia_01#slices)
+    3. [Maps](dia_01#maps)
 
 ## DIA 02
 
