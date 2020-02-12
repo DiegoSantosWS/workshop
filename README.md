@@ -1,6 +1,6 @@
 # Workshop Go: do Zero à API
 
-## DIA 01
+## [DIA 01](dia_01#dia-01)
 
 1. [O que é Go](dia_01#o-que-é-go)
 

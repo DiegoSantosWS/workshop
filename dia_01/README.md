@@ -118,7 +118,7 @@ Por enquanto, isso é o bastante para saber que o nosso `t` do tipo `*testing.T`
 
 ## Tipos básicos
 
-Go apresenta várias maneiras de organizar dados, desde tipos que correspodem aos recursos do hardware até tipo convenientes para a representação de estruturas de dados complexas.
+Go apresenta várias maneiras de organizar dados, desde tipos que correspondem aos recursos do hardware até tipo convenientes para a representação de estruturas de dados complexas.
 
 ### String
 
@@ -147,7 +147,7 @@ Os tipos numéricos em Go incluem vários tamanhos de inteiros, ponto flutuante 
 
 - complex64, complex128 - Podem ser criados pela função `complex`
 
-### Boleanos
+### Booleanos
 
 - true, false
 
@@ -251,7 +251,7 @@ Texto com aspas duplas ou simples:<br>`"Lua Yavin IV"`<br><code>\`Sua superfíci
 Inteiros:<br>`-51`<br>`0`<br>`1234` | int
 Decimal:<br>`-0.12`<br>`1.0`<br>`1.3e5`<br>`5e-11` | float64
 Números complexos:<br>`-1.0i`<br>`2i`<br>`(0+2i)` | complex128
-Boleanos:<br>`true`<br>`false` | bool
+Booleanos:<br>`true`<br>`false` | bool
 Arrays:<br>`[2]int{-3, 51}`| O tipo do `array` definido pelo valor literal. Neste caso `[2]int`
 Map:<br>`map[string]int{`<br>`"Tatooine": 10465,`<br>`"Alderaan": 12500,`<br>`"Yavin IV": 10200,`<br>`}` | O tipo do `map` definido pelo valor literal. Neste caso `map[string]int`
 Slice:<br>`[]int{-3, 51, 134, 0}` | O tipo do `slice` definido pelo valor literal: `[]int`
@@ -269,6 +269,7 @@ Em Go é possível reduzir ainda mais a sintaxe da declaração de variáveis. N
 O techo de código a seguir mostra como usá-la:
 
 ```go
+// var04.go
 ...
 func main() {
 	nome := "Endor"
@@ -297,23 +298,24 @@ Existem algumas restrições quando usamos a declaração curta de variáveis e 
 A sintaxe do Go permite que a declaração de variáveis seja agrupada em blocos para maior legibilidade e organização do código. O trecho de código a seguir mostra a reescrita de um dos exemplos anteriores usando a declaração de variável em bloco:
 
 ```go
+// var05.go
 var (
-	nome     string  = "Hoth"
-	desc     string  = "Planeta"
-	diametro int32   = 7200
-	massa    float64 = 5.972e+24
+	nome     string  = "Endor"
+	desc     string  = "Lua"
+	diametro int32   = 4900
+	massa    float64 = 1.024e26
 	ativo    bool    = true
 	terreno          = []string{
-		"Tundra",
-		"Cavernas de Gelo",
-		"Cadeias de Montanhas",
+		"Florestas",
+		"Montanhas",
+		"Lagos",
 	}
 )
 ```
 
 ### Constantes
 
-Em Go, uma constante é um valor com uma representação literal de uma string, um caractere, um boleano ou numeros. O valor para uma constante é estático e não pode ser alterado após a atribuição inicial.
+Uma constante é um valor com uma representação literal de uma string, um caractere, um booleano ou números. O valor para uma constante é estático e não pode ser alterado após a atribuição inicial.
 
 #### Constantes tipadas
 
@@ -326,15 +328,16 @@ const <lista de identificadores> tipo = <lista de valores ou expressões de inic
 O seguinte trecho de código mostra algumas constantes tipadas sendo declaradas:
 
 ```go
+// const01.go
 ...
 const a1, a2 string = "Workshop", "Go"
 const b rune = 'G'
 const c bool = false
-const d int32 = 2019
-const e float32 = 2.019
+const d int32 = 2020
+const e float32 = 2.020
 const f float64 = math.Pi * 2.0e+3
-const g complex64 = 5.0i
-const h time.Duration = 4 * time.Second
+const g complex64 = 20.0i
+const h time.Duration = 20 * time.Second
 ...
 ```
 
@@ -351,27 +354,29 @@ const <lista de identificadores> = <lista de valores ou expressões de inicializ
 Neste formato, a especificação de tipo é omitida na declaração. Logo, uma constante é meramente um bloco de bytes na memória sem qualquer tipo de restrição de precisão imposta. A seguir, algumas declarações de constantes não tipificadas:
 
 ```go
+// const02.go
 ...
 const i = "G é" + " para Go"
-const j = 'V'
+const j = 'G'
 const k1, k2 = true, !k1
-const l = 111*100000 + 9
+const l = 111*100000 + 20
 const m1 = math.Pi / 3.141592
 const m2 = 1.41421356237309504880168872420969807856967187537698078569671875376
 const m3 = m2 * m2
-const m4 = m3 * 1.0e+400
-const n = -5.0i * 3
-const o = time.Millisecond * 5
+const m4 = m3 * 20.0e+400
+const n = -5.0i * 20
+const o = time.Millisecond * 20
 ...
 ```
 
-A constante `m4` recebe um valor muito grande (`m3 * 1.0e+400`) que é armazenado na memória sem qualquer perda de precisão. Isso pode ser útil em aplicações onde realizar cálculos com um alto nível de precisão é extremamente importante.
+A constante `m4` recebe um valor muito grande (`m3 * 20.0e+400`) que é armazenado na memória sem qualquer perda de precisão. Isso pode ser útil em aplicações onde realizar cálculos com um alto nível de precisão é extremamente importante.
 
 #### Atribuindo constantes não tipadas
 
 Mesmo Go sendo uma linguagem fortemente tipada, é possível atribuir uma constante não tipada a diferentes tipos de precisão diferentes, embora compatíveis, sem qualquer reclamação do compilador, conforme mostrada a seguir:
 
 ```go
+// const03.go
 ...
 const m2 = 1.41421356237309504880168872420969807856967187537698078569671875376
 var u1 float32 = m2
@@ -387,16 +392,17 @@ Como `u3` não tem um tipo específico, ele será inferido a partir do valor da 
 A declaração de constantes também podem ser organizadas em blocos, aumentando a legibilidade do código, conforme a seguir:
 
 ```go
+// const04.go
 ...
 const (
 	a1, a2 string        = "Workshop", "Go"
 	b      rune          = 'G'
 	c      bool          = false
-	d      int32         = 2019
-	e      float32       = 2.019
-	f      float64       = math.Pi * 2.0e+3
-	g      complex64     = 5.0i
-	h      time.Duration = 4 * time.Second
+	d      int32         = 2020
+	e      float32       = 2.020
+	f      float64       = math.Pi * 20.0e+3
+	g      complex64     = 20.0i
+	h      time.Duration = 20 * time.Second
 )
 ...
 ```

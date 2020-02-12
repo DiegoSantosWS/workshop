@@ -3,20 +3,19 @@ package main
 import "fmt"
 
 var (
-	nome     string  = "Hoth"
-	desc     string  = "Planeta"
-	diametro int32   = 7200
-	massa    float64 = 5.972e+24
+	nome     string  = "Endor"
+	desc     string  = "Lua"
+	diametro int32   = 4900
+	massa    float64 = 1.024e26
 	ativo    bool    = true
 	terreno          = []string{
-		"Tundra",
-		"Cavernas de Gelo",
-		"Cadeias de Montanhas",
+		"Florestas",
+		"Montanhas",
+		"Lagos",
 	}
 )
 
 func main() {
-
 	fmt.Println(nome)
 	fmt.Println(desc)
 	fmt.Println("Raio (km)", diametro)
