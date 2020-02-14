@@ -199,3 +199,5 @@ func main() {
     fmt.Println("perim: ", resultPerim)
 }
 ```
+
+[Funções >>](interfaces.md#interfaces)

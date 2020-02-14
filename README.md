@@ -41,7 +41,7 @@
     1. [Erros](dia_02/funcoes.md#erros)
     2. [Métodos](dia_02/funcoes.md#metódos)
 
-8. Interfaces
+8. [Interfaces](dia_02/interfaces.md#interfaces)
 
 ## DIA 03
 
