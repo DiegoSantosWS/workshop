@@ -200,4 +200,4 @@ func main() {
 }
 ```
 
-[Funções >>](interfaces.md#interfaces)
+[Interfaces >>](interfaces.md#interfaces)
