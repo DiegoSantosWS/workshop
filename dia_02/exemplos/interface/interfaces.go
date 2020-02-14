@@ -1,13 +1,6 @@
-# Interfaces
-
-Uma **interface** é uma coleção de assinaturas de metódos que um tipo (type) pode implementar usando metodos. Portanto uma **inteface** define não declara o comportamento do objeto do tipo type.
-
-A Principal ultilidade de uma interface é apenas fornecer assinaturas de metodo consistindo no nome do do método, argumentos de entrada e tipos de retorno. É de responsabilidade de um método (ex: *struct*) declarar os métodos e implementá-los.
-
-Para exemplificar vamos usar os mesmos dados que usamos para criar métodos.
-
-```go
 package main
+
+import "fmt"
 
 // GEO ...
 type GEO interface {
@@ -44,4 +37,3 @@ func main() {
 
 	printMedida(&a)
 }
-```
