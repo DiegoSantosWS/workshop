@@ -92,7 +92,7 @@ func main() {
 
 func exemploNomeado(str string) (nome string) {
     nome = str
-	return 
+    return 
 }
 ```
 
@@ -119,7 +119,83 @@ func exemploVariadico(numeros ...int) (total int) {
 }
 ```
 
-
 # Erros
 
+Erros é um assunto muito complexo em Go pois não existe um tratamento de exeção como em outras linguagens, a unica forma de se tratar *error* em Go é usando a condição *if* para isso ou então podemos criar uma função para realizar o tratamento. veja os exemplos.
+
+
+```go
+package main
+
+func main() {
+    tot, err := exemploVariadico(1,2)
+    if err != nil {
+        return
+    }
+    fmt.Println("Resultado é:", tot)
+
+    tot2, err := exemploVariadico(2,3)
+    if err != nil {
+        return
+    }
+    fmt.Println("Resultado é:", tot2)
+
+    tot3, err := exemploVariadico(3,4)
+    checkErr(err)
+    fmt.Println("Resultado é:", tot3)
+}
+
+func exemploVariadico(numeros ...int) (total int, err error) {
+    total = 0
+
+    for _, n := numeros {
+        total += n
+    }
+    if total == 0 {
+        err = errors.New("O resoltado não pode ser zero")
+        return
+    }
+	return 
+}
+
+func checkErr(err error) {
+    if err != nil {
+        return
+    }
+}
+```
+Como mostrado no exemple acima uma função pode returnar algum resultado e/ou errors.
+
 # Metódos
+
+Metódos em Go são definidos por um tipo struct, metódos pode ser definidos para qualquer tipo de receptor seja ponteiro ou valor. veja exemplo
+
+
+```go
+package main
+
+type area struct {
+    Largura int
+    Altura  int
+}
+
+func (r *area) CalculaArea() int {
+    res := r.Largura * r.Altura
+    return res
+}
+
+func (r area) CalculaPerimetro() int {
+    res := 2*r.Largura * 2*r.Altura
+    return res
+}
+
+
+func main() {
+    a := area{Largura: 10, Altura: 5}
+    resultArea := a.CalculaArea()
+    fmt.Println("area: ", resultArea)
+    perim := &a //repassando os valores
+    resultPerim := perim.CalculaPerimetro()
+    fmt.Println("perim: ", resultPerim)
+}
+```
