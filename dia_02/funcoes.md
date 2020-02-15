@@ -4,7 +4,7 @@
 
 ### Como declarar uma função?
 
-Declarar uma funão é algo bem simples, ultilizando a palavra reservada **func** seguida do identificador.
+Declarar uma função é algo bem simples, utilizando a palavra reservada **func** seguida do identificador.
 
 ```go
 package main
@@ -128,24 +128,24 @@ Erros é um assunto muito complexo em Go pois não existe um tratamento de exeç
 package main
 
 func main() {
-    tot, err := exemploVariadico(1,2)
+    tot, err := exemploVariadicoWithErr(1,2)
     if err != nil {
         return
     }
     fmt.Println("Resultado é:", tot)
 
-    tot2, err := exemploVariadico(2,3)
+    tot2, err := exemploVariadicoWithErr(2,3)
     if err != nil {
         return
     }
     fmt.Println("Resultado é:", tot2)
 
-    tot3, err := exemploVariadico(3,4)
+    tot3, err := exemploVariadicoWithErr(3,4)
     checkErr(err)
     fmt.Println("Resultado é:", tot3)
 }
 
-func exemploVariadico(numeros ...int) (total int, err error) {
+func exemploVariadicoWithErr(numeros ...int) (total int, err error) {
     total = 0
 
     for _, n := numeros {
@@ -166,9 +166,9 @@ func checkErr(err error) {
 ```
 Como mostrado no exemple acima uma função pode returnar algum resultado e/ou errors.
 
-# Metódos
+# Métodos
 
-Metódos em Go são definidos por um tipo struct, metódos pode ser definidos para qualquer tipo de receptor seja ponteiro ou valor. veja exemplo
+Métodos em Go são definidos por um tipo struct, métodos pode ser definidos para qualquer tipo de receptor seja ponteiro ou valor. veja exemplo
 
 
 ```go
