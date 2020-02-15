@@ -412,18 +412,19 @@ const (
 Um interessante uso para constantes é na criação de enumerações. Usando a declaração de blocos, é facilmente possível criar valore inteiros que aumentam numericamente. Para isso, basta atribuir o valor constante pré-declarado `iota` a um identificador de constante na declaração de bloco, conforme mostrado no exemplo a seguir:
 
 ```go
+// enum01.go
 ...
 const (
-	EstrelaHiperGigante = iota
-	EstrelaSuperGigante
-	EstrelaBrilhanteGigante
-	EstrelaGigante
-	EstrelaSubGigante
-	EstrelaAna
-	EstrelaSubAna
-	EstrelaAnaBranca
-	EstrelaAnaVermelha
-	EstrelaAnaMarrom
+	estrelaHiperGigante = iota
+	estrelaSuperGigante
+	estrelaBrilhanteGigante
+	estrelaGigante
+	estrelaSubGigante
+	estrelaAna
+	estrelaSubAna
+	estrelaAnaBranca
+	estrelaAnaVermelha
+	estrelaAnaMarrom
 )
 ...
 ```
@@ -440,20 +441,21 @@ Assim, as constantes da lista receberão os valores de zero até nove.
 É importante ressaltar que, sempre que `const` aparecer em um bloco de declaração, o contador é redefinido para zero. No trecho de código seguinte, cada conjunto de constantes é enumerado de zero a quatro:
 
 ```go
+// enum02.go
 ...
 const (
-	EstrelaHiperGigante = iota
-	EstrelaSuperGigante
-	EstrelaBrilhanteGigante
-	EstrelaGigante
-	EstrelaSubGigante
+	estrelaHiperGigante = iota
+	estrelaSuperGigante
+	estrelaBrilhanteGigante
+	estrelaGigante
+	estrelaSubGigante
 )
 const (
-	EstrelaAna = iota
-	EstrelaSubAna
-	EstrelaAnaBranca
-	EstrelaAnaVermelha
-	EstrelaAnaMarrom
+	estrelaAna = iota
+	estrelaSubAna
+	estrelaAnaBranca
+	estrelaAnaVermelha
+	estrelaAnaMarrom
 )
 ...
 ```
@@ -463,13 +465,14 @@ const (
 Por padrão, uma constante enumerada é declarada como um tipo inteiro não tipado. Porém, podemos substituir o tipo padrão provendo explicitamente um tipo numérico, como mostrado a seguir:
 
 ```go
+// enum03.go
 ...
 const (
-	EstrelaAna byte = iota
-	EstrelaSubAna
-	EstrelaAnaBranca
-	EstrelaAnaVermelha
-	EstrelaAnaMarrom
+	estrelaAna byte = iota
+	estrelaSubAna
+	estrelaAnaBranca
+	estrelaAnaVermelha
+	estrelaAnaMarrom
 )
 ...
 ```
@@ -480,13 +483,14 @@ const (
 Quando a `iota` aparece em uma expressão, o compilador irá aplicar a expressão para cada valor sucessivo. O exemplo a seguir atribui números pares aos membros do bloco de declaração:
 
 ```go
+// enum04.go
 ...
 const (
-	EstrelaHiperGigante = 2.0 * iota
-	EstrelaSuperGigante
-	EstrelaBrilhanteGigante
-	EstrelaGigante
-	EstrelaSubGigante
+	estrelaHiperGigante = 2.0 * iota
+	estrelaSuperGigante
+	estrelaBrilhanteGigante
+	estrelaGigante
+	estrelaSubGigante
 )
 ...
 ```
@@ -496,14 +500,15 @@ const (
 É possível ignorar certos valores em uma enumeração simplesmente atribuindo a `iota` a um identificador em branco (`_`). No trecho de código a seguir, o valor `0` é ignorado:
 
 ```go
+// enum05.go
 ...
 const (
 	_                   = iota
-	EstrelaHiperGigante = 1 << iota
-	EstrelaSuperGigante
-	EstrelaBrilhanteGigante
-	EstrelaGigante
-	EstrelaSubGigante
+	estrelaHiperGigante = 1 << iota
+	estrelaSuperGigante
+	estrelaBrilhanteGigante
+	estrelaGigante
+	estrelaSubGigante
 )
 ...
 ```
