@@ -796,4 +796,4 @@ Exemplos de uso de map:
 [1]:https://golang.org/
 
 
-[DIA 02 :fast_forward:](dia_02#dia-02)
+[DIA 02 :fast_forward:](../dia_02#dia-02)
