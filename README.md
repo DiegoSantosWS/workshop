@@ -20,8 +20,8 @@
 4. [Tipos Compostos](dia_01#tipos-compostos)
     
     1. [Array](dia_01#array)
-    2. [Slices](dia_01#slices)
-    3. [Maps](dia_01#maps)
+    2. [Slice](dia_01#slice)
+    3. [Map](dia_01#map)
 
 ## DIA 02
 
