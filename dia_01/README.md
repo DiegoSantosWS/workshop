@@ -515,11 +515,273 @@ const (
 
 ### Ponteiros
 
+Go possibilita o uso de ponteiros. Um *ponteiro* é o *endereço* de memória de um valor.
+
+Um ponteiro em Go é definido por operador `*`(asterisco). O techo de código a seguir mostra um exemplo da utilização de ponteiros:
+
+```go
+var p *int
+```
+Um ponteiro é definido de acordo com seu tipo de dado.
+
+No código anterior a variável `ap` é um ponteiro para um valor do tipo `int`.
+
+Também é possivel obter o endereço de uma variável, para isso, utilizamos o operador `&` (e comercial).
+
+```go
+eraOuroSith := 5000
+p := &eraOuroSith
+```
+
+Já o valor referenciado ao ponteiro pode ser acessado usando o operador `*`.
+
+```go
+eraOuroSith := 5000
+p := &eraOuroSith
+fmt.Println(*p) // imprime 5000
+```
+
+Um exemplo mais completo:
+
+```go
+// pont01.go
+...
+	eraOuroSith, epIV := 42, 37
+
+	// ponteiro para eraOuroSith
+	p := &eraOuroSith
+	// valor de eraOuroSith por meio do ponteiro
+	fmt.Printf("Era de Ouro dos Sith - %d anos antes do Ep.IV", *p)
+	// atualiza o valor de eraOuroSith por meio do ponteiro
+	*p = 5000
+	// o novo valor de eraOuroSith
+	fmt.Printf("Era de Ouro dos Sith - %d anos antes do Ep.IV | Atualizado", *p)
+
+	// ponteiro para epIV
+	p = &epIV
+	// divide epIV por meio do ponteiro
+	*p = *p / 37
+	// o novo valor de epIV
+	fmt.Println("Star Wars: Ep.IV - Marco %d", epIV)
+...
+```
+
+**IMPORTANTE**: *Go não permite aritmética de ponteiros*.
+
+### A função `new()`
+
+Outra forma de criar variáveis em Go, é usando a função `new()`.
+
+A expressão `new(T)` cria uma variável *sem nome* do tipo `T`, inicializa ela com seu valor zero e devolve seu endereço de memória.
+
+```go
+// new01.go
+...
+	// epIV, do tipo *int, aponta para uma variável sem nome
+	epIV := new(int)
+	// eraOuroSith, do tipo *int, também aponta para uma variável sem nome
+	eraOuroSith := new(int)
+	// "0" zero
+	fmt.Println(*eraOuroSith)
+	// novo valor para o int sem nome
+	*eraOuroSith = *epIV - 5000
+	// "-5000"
+	fmt.Println(*eraOuroSith)
+...
+```
+
+O uso da função `new()` é relativamente raro.
+
 ## Tipos Compostos
 
+Tipos compostos em Go são tipos criados pela combinação de tipos básicos e tipos compostos.
+
 ### Array
-### Slices
-### Maps
+
+*Array* é uma sequência de elementos do mesmo tipo de dados. Um *array* tem um tamanho fixo que é definido em sua declaração, e não pode ser mais alterado depois de declarado.
+
+Eles podem ser declarados assim:
+
+```go
+var linhaTempo [10]int
+```
+
+*Arrays* também podem ser multidimensionais:
+
+```go
+var mult [3][3]int
+```
+
+Iniciando um *array* com valores:
+```golang
+var linhaTempo = [3]int{0, 5, 19}
+```
+
+Atribuindo valores a um *array* já definida:
+
+```go
+// arr01.go 
+...
+var linhaTempo [3]int
+linhaTempo[0] = 0
+linhaTempo[1] = 5
+linhaTempo[2] = 19
+...
+```
+
+Você pode usar `...`(reticências) na definição de capacidade e deixar o compilador definir a capacidade do *array* com base nos elementos na declaração.
+
+```go
+// Declaração simplificada
+linhaTempo := [...]int{0, 5, 19}
+```
+
+No caso acima o tamanho do *array* vai ser de 3 elementos.
+
+#### Tamanho de um *array*:
+
+O tamanho de um *array* pode ser obtido por meio da função nativa `len()`.
+
+```go
+// arr02.go
+...
+	// Declaração simplificada
+	linhaTempo := [...]int{0, 5, 19}
+	// imprime 3
+	fmt.Println(len(linhaTempo))
+...
+```
+
+### Slice
+
+*Slice* é *wrap* flexível e robusto que abstrai um *array*. Em resumo, um *slice* não detém nenhum dado nele. Ele apenas referencía *arrays* existentes.
+
+A declaração de um *slice* é parecida com a de um *array*, mas sem a capacidade definida.
+
+```go
+// slice01.go
+...
+	// declaracao com var
+	var s1 []int
+	fmt.Println("Slice 1:", s1)
+	// declaração curta
+	s2 := []int{}
+	fmt.Println("Slice 2:", s2)
+	// tamanho de um slice
+	fmt.Println("Tamanho do slice 1:", len(s1))
+	fmt.Println("Tamanho do slice 2:", len(s2))
+...
+```
+
+O código acima criou um *slice* sem capacidade inicial e sem nenhum elemento.
+
+Criando um *slice* a partir de um array:
+
+```go
+// slice02.go
+...
+1	// Naves do jogo "Star Wars: Battlefront"
+2	naves := [...]string{
+3		1: "X-Wing",
+4		2: "A-Wing",
+5		3: "Millenium Falcon",
+6		4: "TIE Fighter",
+7		5: "TIE Interceptor",
+8		6: "Imperial Shuttle",
+9		7: "Slave I",
+10	}
+11	// cria um slice de naves[1] até naves[3]
+12	rebeldes := naves[1:4]
+13	fmt.Println(rebeldes)
+...
+```
+
+A sintaxe `s[i:j]` cria um *slice* a partir do *array* `naves` iniciando do índice `i` até o índice `j - 1`. Então, na **linha 12** do código, `naves[1:4]` cria uma representação do *array* `naves` iniciando do índice 1 até o 3. Sendo assim, o slice `rebeldes` tem os valores `["X-Wing" "A-Wing" "Millenium Falcon"]`.
+
+Um *slice* pode ser criado usando a função `make()`, essa função nativa do Go, cria um *array* e retorna um *slice* referenciando o mesmo.
+
+A sintaxe da função é a seguinte `func make([]T, len, cap) []T`. Neste caso, é passando como parâmetro o **tipo**, o **tamanho** e a **capacidade**. A capacidade é opcional, e caso não informada, seu valor *padrão* será o **tamanho**, que é um campo obrigatório.
+
+```go
+// slice03.go
+...
+func main() {
+	s := make([]int, 5, 5)
+	fmt.Println(s)
+}
+...
+```
+ 
+#### Adicionando elementos a um slice
+
+Como sabemos, *arrays* são limitados em seu tamanho e não podem ser aumentados. Já *Slices*, tem seu tamanho dinâmico e podem receber novos elementos em tempo de execução por meio da função nativa `append`.
+
+A definição da função `append` é a seguinte: `func append(s []T, x ...T) []T`.
+
+A sintaxe, `x ...T` significa que a função aceita um número variável de elementos no parâmetro `x`, desde que respeitem o tipo do *slice*.
+
+```go
+// slice04.go
+...
+	// Naves do jogo "Star Wars: Battlefront"
+	rebeldes := [...]string{"'X-Wing'", "'A-Wing'", "'Millenium Falcon'"}
+	imperiais := [...]string{"'TIE Fighter'", "'TIE Interceptor'", "'Imperial Shuttle'", "'Slave I'"}
+
+	naves := make([]string, 0, 0)
+	fmt.Printf("Cap: %d - %v\n", cap(naves), naves)
+	naves = append(naves, "''")
+	fmt.Printf("Cap: %d - %v\n", cap(naves), naves)
+	naves = append(naves, rebeldes[:]...)
+	fmt.Printf("Cap: %d - %v\n", cap(naves), naves)
+	naves = append(naves, imperiais[:]...)
+	fmt.Printf("Cap: %d - %v\n", cap(naves), naves)
+...
+```
+
+Uma questão que pode ter *ficado no ar*: Se um slice é um *wrap* de um *array*, como ela tem esta flexibilidade?
+
+Bem, o que acontece por *debaixo dos panos* quando um novo elemento é adicionado a um *slice* é o seguinte:
+
+1. Um novo *array* é criado
+2. Os elementos do *array* atual são copiados
+3. O elemento ou elementos **adicionado** ao *slice* são incluido no *array*
+4. É retornado um *slice*, que é uma referência a este novo *array*
+
+### Map
+
+Um *Map* é uma estrutura de dados que mantém uma coleção de pares chave/valor.
+Também conhecido como *hash table* (tabela de dispersão ou tabela hash).
+
+A declaração de um *map* em Go segue o seguinte formato:
+
+```go
+map[k]v
+```
+Onde `k` é o tipo da chave e `v` o tipo dos valores.
+
+Exemplos de uso de map:
+
+```golang
+// map01.go
+...
+	naves := make(map[string]string)
+
+	naves["YT-1300"] = "Millennium Falcon"
+	naves["T-65"] = "X-Wing"
+	naves["RZ-1"] = "A-Wing"
+	naves["999"] = "Tunder Tanque"
+
+	fmt.Println("Quantidade de naves:", len(naves))
+	fmt.Println(naves)
+	fmt.Printf("Nave do Han Solo: %s\n", naves["YT-1300"])
+
+	fmt.Println("999 não é uma nave. Removendo...")
+	delete(naves, "999")
+
+	fmt.Println("Quantidade de naves atualizada:", len(naves))
+	fmt.Println(naves)
+...
+```
 
 
 [1]:https://golang.org/
