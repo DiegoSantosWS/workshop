@@ -13,7 +13,7 @@
     
     1. [String](dia_01#string)
     2. [Números](dia_01#números)
-    3. [Boleanos](dia_01#Boleanos)
+    3. [Booleanos](dia_01#booleanos)
 
 3. [Variáveis / Constantes / Ponteiros](dia_01#variáveis--constantes--ponteiros)
 
