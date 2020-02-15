@@ -598,9 +598,15 @@ Tipos compostos em Go são tipos criados pela combinação de tipos básicos e t
 
 ### Array
 
-*Array* é uma sequência de elementos do mesmo tipo de dados. Um *array* tem um tamanho fixo que é definido em sua declaração, e não pode ser mais alterado depois de declarado.
+*Array* é uma sequência de elementos do mesmo tipo de dados. Um *array* tem um tamanho fixo, o qual é definido em sua declaração, e não pode ser mais alterado.
 
-Eles podem ser declarados assim:
+A declaração de um *array* segue o seguinte formato:
+
+```go
+[<tamanho>]<tipo do elemento>
+```
+
+Exemplo:
 
 ```go
 var linhaTempo [10]int
@@ -613,11 +619,12 @@ var mult [3][3]int
 ```
 
 Iniciando um *array* com valores:
+
 ```golang
 var linhaTempo = [3]int{0, 5, 19}
 ```
 
-Atribuindo valores a um *array* já definida:
+Atribuindo valores a um *array* já definido:
 
 ```go
 // arr01.go 
@@ -629,14 +636,14 @@ linhaTempo[2] = 19
 ...
 ```
 
-Você pode usar `...`(reticências) na definição de capacidade e deixar o compilador definir a capacidade do *array* com base nos elementos na declaração.
+Você pode usar `...`(reticências) na definição de capacidade e deixar o compilador definir a capacidade com base na quantidade de elementos na declaração.
 
 ```go
 // Declaração simplificada
 linhaTempo := [...]int{0, 5, 19}
 ```
 
-No caso acima o tamanho do *array* vai ser de 3 elementos.
+Neste caso, o tamanho do *array* será 3.
 
 #### Tamanho de um *array*:
 
@@ -673,9 +680,9 @@ A declaração de um *slice* é parecida com a de um *array*, mas sem a capacida
 ...
 ```
 
-O código acima criou um *slice* sem capacidade inicial e sem nenhum elemento.
+O código anterior criou um *slice* sem capacidade inicial e sem nenhum elemento.
 
-Criando um *slice* a partir de um array:
+Também é possível criar um um *slice* a partir de um array:
 
 ```go
 // slice02.go
@@ -698,9 +705,11 @@ Criando um *slice* a partir de um array:
 
 A sintaxe `s[i:j]` cria um *slice* a partir do *array* `naves` iniciando do índice `i` até o índice `j - 1`. Então, na **linha 12** do código, `naves[1:4]` cria uma representação do *array* `naves` iniciando do índice 1 até o 3. Sendo assim, o slice `rebeldes` tem os valores `["X-Wing" "A-Wing" "Millenium Falcon"]`.
 
-Um *slice* pode ser criado usando a função `make()`, essa função nativa do Go, cria um *array* e retorna um *slice* referenciando o mesmo.
+Um *slice* pode ser criado usando a função `make()`, uma função nativa que cria um *array* e retorna um *slice* referenciando o mesmo.
 
-A sintaxe da função é a seguinte `func make([]T, len, cap) []T`. Neste caso, é passando como parâmetro o **tipo**, o **tamanho** e a **capacidade**. A capacidade é opcional, e caso não informada, seu valor *padrão* será o **tamanho**, que é um campo obrigatório.
+A sintaxe da função é a seguinte `func make([]T, len, cap) []T`.
+
+Neste caso, é passando como parâmetro o **tipo (T)**, o **tamanho (len)** e a **capacidade (cap)**. A capacidade é opcional, e caso não seja informada, seu valor *padrão* será o **tamanho (len)**, que é um campo obrigatório.
 
 ```go
 // slice03.go
@@ -744,15 +753,15 @@ Bem, o que acontece por *debaixo dos panos* quando um novo elemento é adicionad
 
 1. Um novo *array* é criado
 2. Os elementos do *array* atual são copiados
-3. O elemento ou elementos **adicionado** ao *slice* são incluido no *array*
-4. É retornado um *slice*, que é uma referência a este novo *array*
+3. O elemento ou elementos **adicionados** ao *slice* são incluido no *array*
+4. É retornado um *slice*, que é uma referência para o novo *array*
 
 ### Map
 
 Um *Map* é uma estrutura de dados que mantém uma coleção de pares chave/valor.
 Também conhecido como *hash table* (tabela de dispersão ou tabela hash).
 
-A declaração de um *map* em Go segue o seguinte formato:
+A declaração de um *map* segue o seguinte formato:
 
 ```go
 map[k]v

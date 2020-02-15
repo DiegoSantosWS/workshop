@@ -23,7 +23,7 @@
     2. [Slice](dia_01#slice)
     3. [Map](dia_01#map)
 
-## DIA 02
+## [DIA 02](dia_02#dia-02)
 
 5. [Estruturas de Controle](dia_02#estrutura-de-controle)
 
