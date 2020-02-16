@@ -1,47 +1,62 @@
-# Interfaces
+# Dia 02 - Cont.
 
-Uma **interface** é uma coleção de assinaturas de metódos que um tipo (type) pode implementar usando metodos. Portanto uma **inteface** define não declara o comportamento do objeto do tipo type.
+## Interfaces
 
-A Principal ultilidade de uma interface é apenas fornecer assinaturas de metodo consistindo no nome do do método, argumentos de entrada e tipos de retorno. É de responsabilidade de um método (ex: *struct*) declarar os métodos e implementá-los.
+Uma `interface` é uma coleção de metódos que um tipo concreto deve implementar para ser considerado uma instância dessa interface. Portanto, uma `interface` define, mas, não declara o comportamento do tipo.
 
-Para exemplificar vamos usar os mesmos dados que usamos para criar métodos.
+Para exemplificar vamos usar os mesmos exemplos que usamos para criar métodos.
 
 ```go
 package main
 
-// GEO ...
-type GEO interface {
-	CalculaArea() float64
-	CalculaPerimetro() float64
+import "fmt"
+
+// Geo interface base para figuras geométricas
+type Geo interface {
+	Area() float64
 }
 
-type area struct {
+// Retangulo representa um retângulo
+type Retangulo struct {
 	Largura float64
 	Altura  float64
 }
 
-func (r *area) CalculaArea() float64 {
+// Area calcula a are de um retângulo
+func (r *Retangulo) Area() float64 {
 	res := r.Largura * r.Altura
 	return res
 }
 
-func (r *area) CalculaPerimetro() float64 {
-	res := 2*r.Largura + 2*r.Altura
+// Triangulo representa um triângulo
+type Triangulo struct {
+	Base   float64
+	Altura float64
+}
+
+// Area calcula a are de um triângulo
+func (t *Triangulo) Area() float64 {
+	res := (t.Base * t.Altura) / 2
 	return res
 }
 
-func printMedida(g GEO) {
+func imprimeArea(g Geo) {
 	fmt.Println(g)
-	fmt.Println(fmt.Sprintf("Area: %0.2f", g.CalculaArea()))
-	fmt.Println(fmt.Sprintf("Perim: %0.2f", g.CalculaPerimetro()))
+	fmt.Println(fmt.Sprintf("Área      : %0.2f", g.Area()))
 }
 
 func main() {
-	a := area{
+	r := Retangulo{
 		Altura:  10,
 		Largura: 5,
 	}
 
-	printMedida(&a)
+	t := Triangulo{
+		Base:   10,
+		Altura: 5,
+	}
+
+	imprimeArea(&r)
+	imprimeArea(&t)
 }
 ```

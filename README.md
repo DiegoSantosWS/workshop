@@ -32,7 +32,7 @@
     3. [for](dia_02#for)
     4. [for range](dia_02#for-range)
 
-6. [Structs](dia_02#structs)
+6. [Struct](dia_02#struct)
     1. [Struct nomeada](dia_02#struct-nomeada)
     2. [Struct anônima](dia_02#struct-anônima)
     

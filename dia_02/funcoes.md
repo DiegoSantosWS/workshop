@@ -1,10 +1,12 @@
-# Funções
+# Dia 02 - Cont.
 
-> Funções são pequenas unidades de códigos que podem abistrair ações, retornar e/ou receber valores.
+## Funções
+
+Funções são pequenas unidades de códigos que podem abistrair ações, retornar e/ou receber valores.
 
 ### Como declarar uma função?
 
-Declarar uma função é algo bem simples, utilizando a palavra reservada **func** seguida do identificador.
+Declarar uma função é algo bem simples, utilizando a palavra reservada ***`func`*** seguida do identificador.
 
 ```go
 package main
@@ -13,9 +15,9 @@ func nomeDaFuncao(){}
 
 ```
 
-Essa é a declaração mais simples de função que temos. No exemplo acima criamos uma função que não recebe nenhum parametro e não retorna nada, o nome dela poderia ser `faz_nada`.
+Essa é a declaração mais simples de função que temos. No exemplo acima criamos uma função que não recebe nenhum parametro e não retorna nada, o nome dela poderia ser `fazNada`.
 
-Uma função em Go também é um tipo podendo ser declarada da segunte forma.
+Uma função em Go também é um tipo e pode ser declarada da segunte forma:
 
 ```go
 package main
@@ -51,7 +53,7 @@ func multiplica(a, b int) int {
 }
 ```
 
-Veja que na declaração da **func multiplica** eu passei os parametros um seguido do outro, isso por que eles são do mesmo *type (tipo)*, se fossem de tipos diferentes seria nessário declarar cada parametro separadamente. **func multiplica(str string, i int)**.
+Veja que na declaração da `func multiplica(a, b int)` os parametros foram passados um seguido do outro, isso por que eles são do mesmo **tipo** (`int`). Caso fossem de tipos diferentes seria nessário declarar cada tipo separadamente, exemplo `func minhaFunc(str string, i int)`.
 
 ### Funções anônimas
 
@@ -78,7 +80,7 @@ func exemploAnonimo() func() int {
 
 ### Função com retorno nomeado
 
-Podemos criar uma função e nomear o retorno da mesma. veja o exemplo
+Podemos criar uma função e nomear o retorno da mesma. veja o exemplo:
 
 ```go
 package main
@@ -98,7 +100,7 @@ func exemploNomeado(str string) (nome string) {
 
 ### Funções variádicas
 
-Função variádica pode receber qualque numero de argumentos à direita de um mesmo tipo, um bom exemplo de função variádica é a func fmt.Println. Função pode ser chamada de forma usual, com argumentos individuais, caso queira passar uma lista *Slice* pode ser aplicado como mostra no exemplo à seguir.
+Função variádica é uma função que pode receber qualquer número de argumentos à direita e de um mesmo tipo. Um bom exemplo de função variádica é a função `fmt.Println`. A função pode ser chamada de forma usual, com argumentos individuais ou uma lista (`Slice`).
 
 ```go
 package main
@@ -112,16 +114,16 @@ func main() {
 func exemploVariadico(numeros ...int) (total int) {
     total = 0
 
-    for _, n := numeros {
+    for _, n := range numeros {
         total += n
     }
 	return 
 }
 ```
 
-# Erros
+## Erros
 
-Erros é um assunto muito complexo em Go pois não existe um tratamento de exeção como em outras linguagens, a unica forma de se tratar *error* em Go é usando a condição *if* para isso ou então podemos criar uma função para realizar o tratamento. veja os exemplos.
+**Erros** são um assunto muito complexo em Go, pois não existe um tratamento de exeção como em outras linguagens. A única forma de se tratar *erros* em Go é usando a condição *if* ou então podemos criar uma função para realizar o tratamento. veja os exemplos:
 
 
 ```go
@@ -152,7 +154,7 @@ func exemploVariadicoWithErr(numeros ...int) (total int, err error) {
         total += n
     }
     if total == 0 {
-        err = errors.New("O resoltado não pode ser zero")
+        err = errors.New("O resultado não pode ser zero")
         return
     }
 	return 
@@ -164,11 +166,13 @@ func checkErr(err error) {
     }
 }
 ```
-Como mostrado no exemple acima uma função pode returnar algum resultado e/ou errors.
+Como mostrado no exemplo acima, uma função pode retornar algum resultado e/ou erro.
 
-# Métodos
+## Métodos
 
-Métodos em Go são definidos por um tipo struct, métodos pode ser definidos para qualquer tipo de receptor seja ponteiro ou valor. veja exemplo
+Métodos em Go são uma variação da declaração de função. No método, um parâmetro extra aparece antes do nome da função e é chamado de receptor (*receiver*).
+
+Métodos podem ser definidos para qualquer tipo de receptor, até mesmo ponteiros, exemplo:
 
 
 ```go
@@ -200,4 +204,4 @@ func main() {
 }
 ```
 
-[Interfaces >>](interfaces.md#interfaces)
+[Interfaces :fast_forward:](interfaces.md#interfaces)

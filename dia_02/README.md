@@ -1,14 +1,14 @@
 # Dia 02
 
-## Estrutura de controle
+## Estruturas de controle
 
-Estrutura de controle é ultilizada para alterar a forma em que nosso código é executado. Podemos fazer, por exemplo, que uma parte do nosso código se repita varias vezes, ou que seja executada um pedaço de código caso uma condição seja apresentada.
+Estruturas de controle são ultilizadas para alterar a forma como o nosso código é executado. Podemos, por exemplo, fazer com que uma parte do nosso código seja repitido várias vezes, ou que seja executado caso uma condição seja satisfeita.
 
 ### if
 
-O <code>***if***</code> é uma comando que representa uma condição, para entender melhor como ele funciona veja o problema.
+O `if` é uma instrução que avalia uma condição booleana. Para entender melhor como ele funciona, vamos analisar o seguinte problema:
 
-> Em uma soma de dois números onde a = 2 e b = 4 descubra o valo de c, se o c for igual a 6 imprima na tela "Sua soma está correta."
+> Em uma soma de dois números, onde `a` = 2 e `b` = 4, avalie o valor de `c`. Se `c` for igual a 6, imprima na tela *"Sua soma está correta!"*, caso contrário, imprima *"Sua soma está errada!"*.
 
 ```go
 package main 
@@ -22,21 +22,6 @@ func main() {
     }
     //uma forma d fazer se não
     fmt.Println("Sua soma está errada.")
-}
-```
-
-```go
-package main 
-
-func main() {
-    var a, b = 2, 4
-    c := (a + b)
-    if c == 7 {
-        fmt.Println("Sua soma está correta.")
-    } else {
-        //uma forma de fazer o else
-        fmt.Println("Sua soma está errada.")
-    }
 }
 ```
 
@@ -64,11 +49,9 @@ func main() {
 
 ### Switch
 
-A instrução <code>***switch***</code> expressam condições em através de vários ramos. em ***_Go*** podemos usar vírgula para separar várias expreções em uma mesma condição <code>***case***</code>.
+A instrução ***`switch`*** é uma maneira mais fácil de evitar longas instruções ***`if-else`***. Com ela é possível realiza ações diferentes com base nos possíveis valores de uma expressão.
 
-O <code>***switch***</code> sem nenhuma expreção é uma logical para representar <code>***if/else***</code>
-
-# Exemplo 1
+#### Exemplo 1
 
 ```go
 package main 
@@ -86,7 +69,9 @@ func main() {
 }
 ```
 
-# Exemplo 2
+O ***`switch`*** pode testar valores de qualquer tipo, além de podermos usar vírgula para separar várias expreções em uma mesma condição ***`case`***.
+
+#### Exemplo 2
 
 ```go
 package main
@@ -101,7 +86,9 @@ func main() {
 }
 ```
 
-# Exemplo 3
+O ***`switch`*** sem uma expressão é uma maneira alternativa para expressar uma lógica ***`if-else`***.
+
+#### Exemplo 3
 
 ```go
 package main
@@ -119,13 +106,13 @@ func main() {
 }
 ```
 
-# for
+### for
 
-Em outras linguagens temos várias formas de fazer laços de repetição, mas é _Go so temos uma forma, e é usando a palavra reservada <code>***for***</code>.
+Em outras linguagens de programação temos várias formas de fazer laços de repetição, porém, em **Go** só temos uma forma, e é usando a palavra reservada ***`for`***.
 
-### Exemplo 1
+#### Exemplo 1
 
-Na forma tradicional que ja conhecemos vamos imprimir numeros de 1 a 10.
+A forma tradicional, que já conhecemos, e que no exemplo vai imprimir números de 1 a 10.
 
 ```go
 package main
@@ -137,7 +124,7 @@ func main(){
 }
 ```
 
-# Exemplo 2
+#### Exemplo 2
 
 ```go
 package main
@@ -151,7 +138,7 @@ func main(){
 }
 ```
 
-# Exemplo 3 loop infinito
+#### Exemplo 3 loop infinito
 
 ```go
 package main
@@ -164,15 +151,15 @@ func main(){
 }
 ```
 
-# for range
+### for range
 
-Já vimos as outras formas de usar o <code>***for***</code>, agora falta o <code>***range***</code>. Essa expressão espera recever uma lista "array ou slice"
+Já vimos as outras formas de usar o ***`for`***, agora falta o ***`range`***. Essa expressão espera receber uma lista (`array` ou `slice).
 
 ```go
 
 func main() {
 
-    listaDeCompras := []string{"arroz", "fejão", "melancia", "banana", "maçã", "ovo", "cenora"}
+    listaDeCompras := []string{"arroz", "feijão", "melancia", "banana", "maçã", "ovo", "cenoura"}
     for k, p := range listaDeCompras {
         retornaNomeVegetal(k, p)
     }
@@ -180,21 +167,22 @@ func main() {
 
 func retornaNomeVegetal(key int, str string) {
     switch str {
-    case "banana", "cenora":
-       fmt.Println("A sessão", key, " e vejetal é:", str)
+    case "banana", "cenoura":
+       fmt.Println("A sessão", key, " e vegetal é:", str)
     default:
         return
     }
 }
 ```
 
-# Structs
+## Struct
 
-<code>***Stucts***</code> é um tipo de dado agregado que agrupa zero ou mais valores nomeados de tipo quaisquer como uma única entidade. Cada valor é chamado de ***campo***.
+***`Stuct`*** é um tipo de dado agregado que agrupa zero ou mais valores nomeados de tipo quaisquer como uma única entidade. Cada valor é chamado de ***campo***.
 
 ### Struct Nomeada
 
-Estrutura no nomeada recebem um nome em sua declaração, para exemplificar criaremos uma strutc para representar um cadastro de funcionário em uma empresa. Seu campos pode ser acessados través da expressão **variaval.Name** veja no exemplo.
+Uma `struct` nomeada recebe um nome em sua declaração. 
+Para exemplificar, criaremos uma `strutc` para representar um cadastro de funcionário em uma empresa. Seus campos pode ser acessados través da expressão `variaval.Name`, exemplo:
 
 ```go
 package main
@@ -231,9 +219,9 @@ func main() {
 
 ### Struct anônima
 
-Uma <code>***struct***</code> anônima é tipo sem um nome como referência. Sua declaração é como semelhante a uma ***declaração rapída de variável***.
+Uma ***`struct`*** anônima é tipo sem um nome como referência. Sua declaração é semelhante a uma ***declaração rapída de variável***.
 
-> Só devemos user uma <code>struct</code> anônima quando não há necessida de criar um objeto para o dado que será transpordado por ela.
+> Só devemos usar uma `struct` anônima quando não há necessida de criar um objeto para o dado que será transportado por ela.
 
 ```go
 package main
@@ -249,4 +237,4 @@ func inferData(fN, lN string) {
 }
 ```
 
-[Funções >>](funcoes.md#funções)
+[Funções :fast_forward:](funcoes.md#funções)
