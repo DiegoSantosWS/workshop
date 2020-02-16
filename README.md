@@ -25,7 +25,7 @@
 
 ## [DIA 02](dia_02#dia-02)
 
-5. [Estruturas de Controle](dia_02#estrutura-de-controle)
+5. [Estruturas de Controle](dia_02#estruturas-de-controle)
 
     1. [if](dia_02#if)
     2. [switch](dia_02#switch)
@@ -39,7 +39,7 @@
 7. [Funções](dia_02/funcoes.md#funções)
 
     1. [Erros](dia_02/funcoes.md#erros)
-    2. [Métodos](dia_02/funcoes.md#metódos)
+    2. [Métodos](dia_02/funcoes.md#métodos)
 
 8. [Interfaces](dia_02/interfaces.md#interfaces)
 

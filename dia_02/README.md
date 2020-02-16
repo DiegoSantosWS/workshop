@@ -153,25 +153,23 @@ func main(){
 
 ### for range
 
-Já vimos as outras formas de usar o ***`for`***, agora falta o ***`range`***. Essa expressão espera receber uma lista (`array` ou `slice).
+Já vimos as outras formas de usar o ***`for`***, agora falta o ***`range`***. Essa expressão espera receber uma lista (`array` ou `slice`).
 
 ```go
-
-func main() {
-
-    listaDeCompras := []string{"arroz", "feijão", "melancia", "banana", "maçã", "ovo", "cenoura"}
-    for k, p := range listaDeCompras {
-        retornaNomeVegetal(k, p)
-    }
+func exemploFor4() {
+	listaDeCompras := []string{"arroz", "feijão", "melancia", "banana", "maçã", "ovo", "cenoura"}
+	for k, p := range listaDeCompras {
+		retornaNomeFruta(k, p)
+	}
 }
 
-func retornaNomeVegetal(key int, str string) {
-    switch str {
-    case "banana", "cenoura":
-       fmt.Println("A sessão", key, " e vegetal é:", str)
-    default:
-        return
-    }
+func retornaNomeFruta(key int, str string) {
+	switch str {
+	case "melancia", "banana", "maçã":
+		fmt.Println("Na posição", key, "temos a fruta:", str)
+	default:
+		return
+	}
 }
 ```
 

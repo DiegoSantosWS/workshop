@@ -40,16 +40,16 @@ func exemploFor3() {
 /*============================================== FOR RANGE =============================*/
 
 func exemploFor4() {
-	listaDeCompras := []string{"arroz", "fejão", "melancia", "banana", "maçã", "ovo", "cenora"}
+	listaDeCompras := []string{"arroz", "feijão", "melancia", "banana", "maçã", "ovo", "cenoura"}
 	for k, p := range listaDeCompras {
-		retornaNomeVegetal(k, p)
+		retornaNomeFruta(k, p)
 	}
 }
 
-func retornaNomeVegetal(key int, str string) {
+func retornaNomeFruta(key int, str string) {
 	switch str {
-	case "banana", "cenora":
-		fmt.Println("A sessão", key, " e vejetal é:", str)
+	case "melancia", "banana", "maçã":
+		fmt.Println("Na posição", key, "temos a fruta:", str)
 	default:
 		return
 	}
