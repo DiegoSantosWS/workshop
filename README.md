@@ -57,6 +57,6 @@
 
 12. API
 
-    1. REST
-    2. net/HTTP
+    1. Rest API
+    2. API em Go com net/HTTP
     3. JSON

@@ -2,7 +2,7 @@
 
 ## O que é Go
 
-> _Go é uma linguagem de programação de código aberto que facilita a criação de software **simples**, **confiável** e **eficiente**._
+> _"Go é uma linguagem de programação de código aberto que facilita a criação de software **simples**, **confiável** e **eficiente**"._
 >> <cite>[golang.org][1]</cite>
 
 ### Um pouco de história
@@ -517,16 +517,16 @@ const (
 
 Go possibilita o uso de ponteiros. Um *ponteiro* é o *endereço* de memória de um valor.
 
-Um ponteiro em Go é definido por operador `*`(asterisco). O techo de código a seguir mostra um exemplo da utilização de ponteiros:
+Um ponteiro em Go é definido por operador `*`(asterisco). O trecho de código a seguir mostra um exemplo da utilização de ponteiros:
 
 ```go
 var p *int
 ```
 Um ponteiro é definido de acordo com seu tipo de dado.
 
-No código anterior a variável `ap` é um ponteiro para um valor do tipo `int`.
+No código anterior a variável `p` é um ponteiro para um valor do tipo `int`.
 
-Também é possivel obter o endereço de uma variável, para isso, utilizamos o operador `&` (e comercial).
+Também é possível obter o endereço do valor de uma variável, para isso, utilizamos o operador `&` (e comercial).
 
 ```go
 eraOuroSith := 5000
@@ -546,23 +546,22 @@ Um exemplo mais completo:
 ```go
 // pont01.go
 ...
-	eraOuroSith, epIV := 42, 37
-
-	// ponteiro para eraOuroSith
-	p := &eraOuroSith
-	// valor de eraOuroSith por meio do ponteiro
-	fmt.Printf("Era de Ouro dos Sith - %d anos antes do Ep.IV", *p)
-	// atualiza o valor de eraOuroSith por meio do ponteiro
-	*p = 5000
-	// o novo valor de eraOuroSith
-	fmt.Printf("Era de Ouro dos Sith - %d anos antes do Ep.IV | Atualizado", *p)
-
-	// ponteiro para epIV
-	p = &epIV
-	// divide epIV por meio do ponteiro
-	*p = *p / 37
-	// o novo valor de epIV
-	fmt.Println("Star Wars: Ep.IV - Marco %d", epIV)
+var p *int
+eraOuroSith, epIV := 42, 37
+// ponteiro para eraOuroSith
+p = &eraOuroSith
+// valor de eraOuroSith por meio do ponteiro
+fmt.Printf("Era de Ouro dos Sith - %d anos antes do Ep.IV (%#x)\n", *p, p)
+// atualiza o valor de eraOuroSith por meio do ponteiro
+*p = 5000
+// o novo valor de eraOuroSith
+fmt.Printf("Era de Ouro dos Sith - %d anos antes do Ep.IV | Atualizado (%#x)\n", *p, p)
+// ponteiro para epIV
+p = &epIV
+// divide epIV por meio do ponteiro
+*p = *p / 38
+// o novo valor de epIV
+fmt.Printf("Star Wars: Ep.IV é o Marco %d (%#x)\n", epIV, p)
 ...
 ```
 
@@ -624,7 +623,16 @@ Iniciando um *array* com valores:
 var linhaTempo = [3]int{0, 5, 19}
 ```
 
-Atribuindo valores a um *array* já definido:
+Você pode usar `...`(reticências) na definição de capacidade e deixar o compilador definir a capacidade com base na quantidade de elementos na declaração.
+
+```go
+// Declaração simplificada
+linhaTempo := [...]int{0, 5, 19}
+```
+
+Neste caso, o tamanho do *array* será 3.
+
+O próximo exemplo mostra como atribuir valores a um *array* já definido:
 
 ```go
 // arr01.go 
@@ -636,15 +644,6 @@ linhaTempo[2] = 19
 ...
 ```
 
-Você pode usar `...`(reticências) na definição de capacidade e deixar o compilador definir a capacidade com base na quantidade de elementos na declaração.
-
-```go
-// Declaração simplificada
-linhaTempo := [...]int{0, 5, 19}
-```
-
-Neste caso, o tamanho do *array* será 3.
-
 #### Tamanho de um *array*:
 
 O tamanho de um *array* pode ser obtido por meio da função nativa `len()`.
@@ -652,31 +651,31 @@ O tamanho de um *array* pode ser obtido por meio da função nativa `len()`.
 ```go
 // arr02.go
 ...
-	// Declaração simplificada
-	linhaTempo := [...]int{0, 5, 19}
-	// imprime 3
-	fmt.Println(len(linhaTempo))
+// Declaração simplificada
+linhaTempo := [...]int{0, 5, 19}
+// imprime 3
+fmt.Println(len(linhaTempo))
 ...
 ```
 
 ### Slice
 
-*Slice* é *wrap* flexível e robusto que abstrai um *array*. Em resumo, um *slice* não detém nenhum dado nele. Ele apenas referencía *arrays* existentes.
+*Slice* é *wrap* flexível e robusto que abstrai um *array*. Em resumo, um *slice* não detém nenhum dado nele. Ele apenas referencia *arrays* existentes.
 
 A declaração de um *slice* é parecida com a de um *array*, mas sem a capacidade definida.
 
 ```go
 // slice01.go
 ...
-	// declaracao com var
-	var s1 []int
-	fmt.Println("Slice 1:", s1)
-	// declaração curta
-	s2 := []int{}
-	fmt.Println("Slice 2:", s2)
-	// tamanho de um slice
-	fmt.Println("Tamanho do slice 1:", len(s1))
-	fmt.Println("Tamanho do slice 2:", len(s2))
+// declaracao com var
+var s1 []int
+fmt.Println("Slice 1:", s1)
+// declaração curta
+s2 := []int{}
+fmt.Println("Slice 2:", s2)
+// tamanho de um slice
+fmt.Println("Tamanho do slice 1:", len(s1))
+fmt.Println("Tamanho do slice 2:", len(s2))
 ...
 ```
 
@@ -707,7 +706,7 @@ A sintaxe `s[i:j]` cria um *slice* a partir do *array* `naves` iniciando do índ
 
 Um *slice* pode ser criado usando a função `make()`, uma função nativa que cria um *array* e retorna um *slice* referenciando o mesmo.
 
-A sintaxe da função é a seguinte `func make([]T, len, cap) []T`.
+A sintaxe da função é a seguinte: `func make([]T, len, cap) []T`.
 
 Neste caso, é passando como parâmetro o **tipo (T)**, o **tamanho (len)** e a **capacidade (cap)**. A capacidade é opcional, e caso não seja informada, seu valor *padrão* será o **tamanho (len)**, que é um campo obrigatório.
 
