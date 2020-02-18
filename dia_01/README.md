@@ -66,6 +66,11 @@ func main() {
 
 Assim como em outras linguagens... em Go temos também o clássico **Hello World**.
 
+Para executar este código, você pode começar com o comando:
+```shell
+go run hello.go
+```
+
 Mas... como podemos testar esse código?
 
 Primeiramente, vamos separar o "domínio" (regras de negócio) do restante do código (efeitos colaterais). A função `fmt.Println` é um efeito colateral (que está imprimindo um valor no `stdout` - saída padrão) e a `string` que estamos passando para ela é o nosso domínio.
@@ -115,6 +120,11 @@ Escrever um teste é como escrever uma função, com algumas regras:
 - A função de teste recebe um único argumento, que é `t *testing.T`.
 
 Por enquanto, isso é o bastante para saber que o nosso `t` do tipo `*testing.T` é a nossa porta de entrada para a ferramenta de testes.
+
+Para executar este teste, você pode começar com o comando:
+```shell
+go test -v hello_test.go hello.go
+```
 
 ## Tipos básicos
 
