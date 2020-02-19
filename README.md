@@ -43,15 +43,15 @@
 
 8. [Interfaces](dia_02/interfaces.md#interfaces)
 
-## DIA 03
+## [DIA 03](dia_3#dia-3)
 
-9. Concorrência
+9. [Concorrência](dia_3/concorrencia.md#concorrência)
 
-    1. Goroutines
-    2. Defer
-    3. WaitGroup
+    1. [Goroutines](dia_3/concorrencia.md#goroutine)
+    2. [Defer](dia_3/concorrencia.md#defer)
+    3. [WaitGroup](dia_3/concorrencia.md#waitgroup)
 
-10. Pacotes
+10. [Pacotes](dia_3/concorrencia.md#pacotes)
 
 11. Gerenciamento de dependências
 
