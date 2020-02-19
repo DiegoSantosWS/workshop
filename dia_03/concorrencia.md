@@ -36,12 +36,39 @@ Canal é um condutor de valores de um tipo particular, chamados de *tipo de elem
 ```go
 package main
 
-var ch
 
 func main() {
-    exempleGoroutine("direto") // espera que ela retorne
-    go exempleGoroutine("com go routine") //cria uma goroutine e não espara que retorne.
+	sendDataToChannal()
 }
+
+func sendDataToChannal() {
+	ch := make(chan int, 1)
+	ch <- 1 //enviando dados para um canal
+	<-ch
+
+	ch <- 2
+	fmt.Println(<-ch)
+}
+
+```
+
+```go
+package main
+
+
+func main() {
+	sendDataToChannal()
+}
+
+func sendDataToChannal() {
+	ch := make(chan int)
+	ch <- 1 //enviando dados para um canal
+	<-ch
+
+	ch <- 2
+	fmt.Println(<-ch)
+}
+
 ```
 
 # Defer
