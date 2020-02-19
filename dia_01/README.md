@@ -713,10 +713,8 @@ Neste caso, é passando como parâmetro o **tipo (T)**, o **tamanho (len)** e a 
 ```go
 // slice03.go
 ...
-func main() {
-	s := make([]int, 5, 5)
-	fmt.Println(s)
-}
+s := make([]int, 5, 5)
+fmt.Println(s)
 ...
 ```
  
@@ -731,18 +729,18 @@ A sintaxe, `x ...T` significa que a função aceita um número variável de elem
 ```go
 // slice04.go
 ...
-	// Naves do jogo "Star Wars: Battlefront"
-	rebeldes := [...]string{"'X-Wing'", "'A-Wing'", "'Millenium Falcon'"}
-	imperiais := [...]string{"'TIE Fighter'", "'TIE Interceptor'", "'Imperial Shuttle'", "'Slave I'"}
+// Naves do jogo "Star Wars: Battlefront"
+rebeldes := [...]string{"'X-Wing'", "'A-Wing'", "'Millenium Falcon'"}
+imperiais := [...]string{"'TIE Fighter'", "'TIE Interceptor'", "'Imperial Shuttle'", "'Slave I'"}
 
-	naves := make([]string, 0, 0)
-	fmt.Printf("Cap: %d - %v\n", cap(naves), naves)
-	naves = append(naves, "''")
-	fmt.Printf("Cap: %d - %v\n", cap(naves), naves)
-	naves = append(naves, rebeldes[:]...)
-	fmt.Printf("Cap: %d - %v\n", cap(naves), naves)
-	naves = append(naves, imperiais[:]...)
-	fmt.Printf("Cap: %d - %v\n", cap(naves), naves)
+naves := make([]string, 0, 0)
+fmt.Printf("Cap: %d - %v\n", cap(naves), naves)
+naves = append(naves, "''")
+fmt.Printf("Cap: %d - %v\n", cap(naves), naves)
+naves = append(naves, rebeldes[:]...)
+fmt.Printf("Cap: %d - %v\n", cap(naves), naves)
+naves = append(naves, imperiais[:]...)
+fmt.Printf("Cap: %d - %v\n", cap(naves), naves)
 ...
 ```
 
@@ -772,22 +770,22 @@ Exemplos de uso de map:
 ```golang
 // map01.go
 ...
-	naves := make(map[string]string)
+naves := make(map[string]string)
 
-	naves["YT-1300"] = "Millennium Falcon"
-	naves["T-65"] = "X-Wing"
-	naves["RZ-1"] = "A-Wing"
-	naves["999"] = "Tunder Tanque"
+naves["YT-1300"] = "Millennium Falcon"
+naves["T-65"] = "X-Wing"
+naves["RZ-1"] = "A-Wing"
+naves["999"] = "Tunder Tanque"
 
-	fmt.Println("Quantidade de naves:", len(naves))
-	fmt.Println(naves)
-	fmt.Printf("Nave do Han Solo: %s\n", naves["YT-1300"])
+fmt.Println("Quantidade de naves:", len(naves))
+fmt.Println(naves)
+fmt.Printf("Nave do Han Solo: %s\n", naves["YT-1300"])
 
-	fmt.Println("999 não é uma nave. Removendo...")
-	delete(naves, "999")
+fmt.Println("999 não é uma nave. Removendo...")
+delete(naves, "999")
 
-	fmt.Println("Quantidade de naves atualizada:", len(naves))
-	fmt.Println(naves)
+fmt.Println("Quantidade de naves atualizada:", len(naves))
+fmt.Println(naves)
 ...
 ```
 

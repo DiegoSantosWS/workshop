@@ -133,7 +133,9 @@ O resultado de uma chamada a nossa API pode ser algo semelhante ao JSON a seguir
    "uf":""
 }
 ```
-Como pode ser percebido, nosso resultado apresenta campos vazios. caso seja necessário, isso pode ser contornado por meio do uso da opção adicional `omitempty`: 
+Como pode ser percebido, nosso resultado apresenta campos vazios. 
+
+Caso seja necessário, isso pode ser contornado por meio do uso da opção adicional `omitempty`: 
 
 ```go
 // server04.go
@@ -353,6 +355,113 @@ func cepHandler(w http.ResponseWriter, r *http.Request) {
 ...
 ```
 
+#### Gran finale
+
+Para finalizar, vamos adicionar um pouco de concorrência em nossa aplicação:
+
+```go
+// server08.go
+package main
+
+import (
+	...
+	"regexp" // Novo
+	"time"
+)
+
+type cep struct {
+	...
+}
+
+// novo
+func (c cep) exist() bool {
+	return len(c.UF) != 0
+}
+...
+
+// Função cepHandler foi refatorada e dela extraímos a função request  
+func cepHandler(w http.ResponseWriter, r *http.Request) {
+	// Restrigindo o acesso apenas pelo método GET
+	if r.Method != http.MethodGet {
+		http.Error(w, http.StatusText(http.StatusMethodNotAllowed), http.StatusMethodNotAllowed)
+		return
+	}
+
+	rCep := r.URL.Path[len("/cep/"):]
+	rCep, err := sanitizeCEP(rCep)
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusBadRequest)
+		return
+	}
+
+	ch := make(chan []byte, 1)
+	for src, url := range endpoints {
+		endpoint := fmt.Sprintf(url, rCep)
+		go request(endpoint, src, rCep, ch)
+	}
+
+	w.Header().Set("Content-Type", "application/json")
+	for index := 0; index < 3; index++ {
+		log.Println(index)
+		cepInfo, err := parseResponse(<-ch)
+		if err != nil {
+			continue
+		}
+
+		if cepInfo.exist() {
+			cepInfo.Cep = rCep
+			json.NewEncoder(w).Encode(cepInfo)
+			return
+		}
+	}
+
+	http.Error(w, http.StatusText(http.StatusNoContent), http.StatusNoContent)
+}
+
+// novo
+func request(endpoint, src, cep string, ch chan []byte) {
+	start := time.Now()
+
+	c := http.Client{Timeout: time.Duration(time.Millisecond * 300)}
+	resp, err := c.Get(endpoint)
+	if err != nil {
+		log.Printf("Ops! ocorreu um erro: %s", err.Error())
+		ch <- nil
+		return
+	}
+	defer resp.Body.Close()
+
+	requestContent, err := ioutil.ReadAll(resp.Body)
+	if err != nil {
+		log.Printf("Ops! ocorreu um erro: %s", err.Error())
+		ch <- nil
+		return
+	}
+
+	if len(requestContent) != 0 && resp.StatusCode == http.StatusOK {
+		log.Printf("O endpoint respondeu com sucesso - source: %s, CEP: %s, Duração: %s", src, cep, time.Since(start).String())
+		ch <- requestContent
+	}
+}
+
+...
+
+// Função para validar o CEP
+func sanitizeCEP(cep string) (string, error) {
+	re := regexp.MustCompile(`[^0-9]`)
+	sanitizedCEP := re.ReplaceAllString(cep, `$1`)
+
+	if len(sanitizedCEP) < 8 {
+		return "", errors.New("O CEP deve conter apenas números e no minimo 8 digitos")
+	}
+
+	return sanitizedCEP[:8], nil
+}
+
+func main() {
+	...
+}
+```
 
 
 [1]:https://pt.wikipedia.org/wiki/Interface_de_programa%C3%A7%C3%A3o_de_aplica%C3%A7%C3%B5es
