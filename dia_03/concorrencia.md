@@ -1,12 +1,12 @@
 # Dia 03
 
-### Concorrência
+# Concorrência
 
 
-### Goroutines
+# Goroutines
 
 
-### Defer
+# Defer
 
 
-### WaitGroup
+# WaitGroup
