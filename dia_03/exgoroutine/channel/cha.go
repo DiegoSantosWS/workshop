@@ -6,7 +6,7 @@ import (
 )
 
 func main() {
-	sendDataToChannal()
+	sendDataToChannel()
 
 	c := make(chan int)
 	go doisTresQuatroVezes(2, c)
@@ -17,7 +17,7 @@ func main() {
 	fmt.Println(<-c)
 }
 
-func sendDataToChannal() {
+func sendDataToChannel() {
 	ch := make(chan int, 1)
 	ch <- 1 //enviando dados para um canal
 	<-ch

@@ -27,9 +27,9 @@ func main() {
 }
 ```
 
-### Canais (channals)
+### Canais (channels)
 
-Se goroutines são atividades de um programa concorrênte, canais(channals) são as conexões entre elas. Um canal é uma sistema de comunicação que permite a uma goroutine enviar valores para outra goroutine.
+Se goroutines são atividades de um programa concorrênte, canais(channels) são as conexões entre elas. Um canal é uma sistema de comunicação que permite a uma goroutine enviar valores para outra goroutine.
 
 Canal é um condutor de valores de um tipo particular, chamados de *tipo de elemento* do canal.
 
@@ -38,10 +38,10 @@ package main
 
 
 func main() {
-	sendDataToChannal()
+	sendDataToChannel()
 }
 
-func sendDataToChannal() {
+func sendDataToChannel() {
 	ch := make(chan int, 1)
 	ch <- 1 //enviando dados para um canal
 	<-ch
@@ -57,10 +57,10 @@ package main
 
 
 func main() {
-	sendDataToChannal()
+	sendDataToChannel()
 }
 
-func sendDataToChannal() {
+func sendDataToChannel() {
 	ch := make(chan int)
 	ch <- 1 //enviando dados para um canal
 	<-ch
