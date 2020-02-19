@@ -13,6 +13,12 @@ Atualmente, boa parte das APIs escritas são APIs web e tendem a seguir o estilo
 
 REST é acrônimo para **RE**presentational **S**tate **T**ransfer. É um estilo arquitetural para sistemas de hipermídia distribuídos e foi apresentado pela primeira vez por **Roy Fielding** em 2000 em sua famosa [dissertação](https://www.ics.uci.edu/~fielding/pubs/dissertation/rest_arch_style.htm).
 
+### Projeto
+
+Como projeto final, vamos desenvolver uma API que vai funcionar como um proxy para alguns serviços de CEP.
+
+A ideia é utilizar a concorrência do Go para realizar diversas requisições simultâneas para cada um dos serviços de CEP e pegar a resposta do serviço que responder mais rapidamente.
+
 ### API em Go com net/HTTP
 
 O suporte **HTTP** em Go é fornecido pelo pacote da biblioteca padrão `net/http`. Dito isso, vamos fazer a primeira iteração da nossa API.
@@ -25,10 +31,20 @@ Começaremos com os três itens essenciais:
 
 - O último item que precisamos é um servidor web. Uma das grandes vantagens do Go é que você pode estabelecer um servidor Web e tratar solicitações recebidas como parte da própria aplicação. Você não precisa de um servidor de terceiros como o Nginx ou o Apache.
 
-Vamos juntar esses itens, os conceitos vistos até aqui e criar uma aplicação funcional:
+Vamos juntar esses itens, os conceitos vistos até aqui e criar uma aplicação didática e funcional.
+
+Primeiramente, acesse o diretório do projeto configurado anteriormente e crie um arquivo chamado `main.go`:
+
+```bash
+$ cd $HOME/workshop/buscacep
+# a criação do arquivo pode ser realizada dentro da prória IDE / Editor de texto
+$ touch main.go
+```
+
+E digite o código a seguir:
 
 ```go
-// server01.go
+// server01.go -> Referência para o arquivo no diretório exemplos
 package main
 
 import (
@@ -59,14 +75,26 @@ func main() {
 }
 ```
 
+Considerando que você está no diretório onde está o arquivo `main.go`, para executar o código anterior, execute:
+
+```bash
+$ go run main.go
+```
+
+E para testar, abra o navegador e digite a URL `http://localhost:4000` ou execute o seguinte comando:
+
+```bash
+$ curl localhost:4000
+```
+
 #### Rotas parametrizadas
 
 Quando acessamos a URL `/cep/04167001`, queremos obter informações sobre o CEP `04167001`. A primeira coisa a ser feita é obter o CEP a partir da URL e isso pode ser feito da seguinte maneira:
 
 ```go
-// server02.go
+// server02.go -> Referência para o arquivo no diretório exemplos
 ...
-// novo função manipuladora
+// novo - função manipuladora (hanlder)
 func cepHandler(w http.ResponseWriter, r *http.Request) {
 	cep := r.URL.Path[len("/cep/"):]
 	w.Write([]byte(cep))
@@ -85,7 +113,7 @@ func main() {
 ...
 ```
 
-> ***Nota sobre rotas parametrizadas:** Idealmente, não devemos verificar o caminho da URL dentro do nosso manipulador (handler), devemos usar um roteador (router).*
+> ***Nota sobre rotas parametrizadas:** Go não suporta roteamento baseado em método ou URLs semânticos com variáveis (`/cep/{cep}`). Idealmente, não devemos verificar o caminho da URL dentro do nosso manipulador (handler), devemos usar um roteador (router).*
 
 #### JSON
 
@@ -96,7 +124,7 @@ Sua simplicidade, legibilidade e suporte universal o tornam, atualmente, a nota�
 Go tem um suporte excelente para codificação e decodificação de JSON oferecidos pelo pacote da biblioteca padrão `encoding/json`.
 
 ```go
-// server03.go
+// server03.go -> Referência para o arquivo no diretório exemplos
 ...
 type cep struct {
 	Cep        string `json:"cep"`
@@ -138,7 +166,7 @@ Como pode ser percebido, nosso resultado apresenta campos vazios.
 Caso seja necessário, isso pode ser contornado por meio do uso da opção adicional `omitempty`: 
 
 ```go
-// server04.go
+// server04.go -> Referência para o arquivo no diretório exemplos
 ...
 type cep struct {
 	Cep        string `json:"cep"`
@@ -155,7 +183,7 @@ type cep struct {
 Um cliente HTTP também pode ser criado com Go para consumir outros serviços com o mínimo de esforço. Como é mostrado no seguinte trecho de código, o código do cliente usa o tipo `http.Client` para se comunicar com o servidor:
 
 ```go
-// server05.go
+// server05.go -> Referência para o arquivo no diretório exemplos
 ...
 var endpoints = map[string]string{
 	"viacep":           "https://viacep.com.br/ws/%s/json/",
@@ -241,7 +269,7 @@ Tudo lindo e maravilhoso, só que se analizarmos os retornos de cada serviço de
 Sendo assim, vamos tratar cada retorno e padronizá-lo:
 
 ```go
-// server06.go
+// server06.go -> Referência para o arquivo no diretório exemplos
 ...
 func cepHandler(w http.ResponseWriter, r *http.Request) {
 	rCep := r.URL.Path[len("/cep/"):]
@@ -264,6 +292,7 @@ func cepHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
+	// Novo
 	c, err := parseResponse(requestContent)
 	if err != nil {
 		log.Printf("Ops! ocorreu um erro: %s", err.Error())
@@ -344,7 +373,7 @@ Se essa função não conseguir detectar o tipo de conteúdo, o cabeçalho será
 A função `http.DetectContentType()` geralmente funciona muito bem, mas uma dica para desenvolvedores Web novos no Go é que ela não consegue distinguir `JSON` de texto sem formatação. E, por padrão, as respostas `JSON` serão enviadas com um cabeçalho `Content-Type: text/plain; charset=utf-8`. Para impedir que isso aconteça, é necessário definir o cabeçalho correto manualmente da seguinte maneira:
 
 ```go
-// server07.go
+// server07.go -> Referência para o arquivo no diretório exemplos
 ...
 func cepHandler(w http.ResponseWriter, r *http.Request) {
     ...
@@ -360,7 +389,7 @@ func cepHandler(w http.ResponseWriter, r *http.Request) {
 Para finalizar, vamos adicionar um pouco de concorrência em nossa aplicação:
 
 ```go
-// server08.go
+// server08.go -> Referência para o arquivo no diretório exemplos
 package main
 
 import (
@@ -395,14 +424,13 @@ func cepHandler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	ch := make(chan []byte, 1)
-	for src, url := range endpoints {
+	for _, url := range endpoints {
 		endpoint := fmt.Sprintf(url, rCep)
-		go request(endpoint, src, rCep, ch)
+		go request(endpoint, ch)
 	}
 
 	w.Header().Set("Content-Type", "application/json")
 	for index := 0; index < 3; index++ {
-		log.Println(index)
 		cepInfo, err := parseResponse(<-ch)
 		if err != nil {
 			continue
@@ -419,7 +447,7 @@ func cepHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 // novo
-func request(endpoint, src, cep string, ch chan []byte) {
+func request(endpoint string, ch chan []byte) {
 	start := time.Now()
 
 	c := http.Client{Timeout: time.Duration(time.Millisecond * 300)}
@@ -439,7 +467,7 @@ func request(endpoint, src, cep string, ch chan []byte) {
 	}
 
 	if len(requestContent) != 0 && resp.StatusCode == http.StatusOK {
-		log.Printf("O endpoint respondeu com sucesso - source: %s, CEP: %s, Duração: %s", src, cep, time.Since(start).String())
+		log.Printf("O endpoint respondeu com sucesso - source: %s, Duração: %s", endpoint, time.Since(start).String())
 		ch <- requestContent
 	}
 }
@@ -463,5 +491,12 @@ func main() {
 }
 ```
 
+### Referências
+
+- [A Tour of Go - Português](https://go-tour-br.appspot.com)
+- [A Tour of Go - English](https://tour.golang.org)
+- [Aprenda Go com Testes - Português](https://larien.gitbook.io/aprenda-go-com-testes/)
+- [Learn Go with Tests - English](https://quii.gitbook.io/learn-go-with-tests/)
+- [Go by Example](https://gobyexample.com/)
 
 [1]:https://pt.wikipedia.org/wiki/Interface_de_programa%C3%A7%C3%A3o_de_aplica%C3%A7%C3%B5es
