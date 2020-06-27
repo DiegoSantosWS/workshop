@@ -1,9 +1,9 @@
 # Dia 03
 
-# Concorrência
+## Concorrência
 
 
-# Goroutines
+### Goroutines
 
 Em Go cada atividade que executa de forma concorrênte é chamada de  *`goroutine`*. 
 
@@ -92,13 +92,18 @@ func main() {
 	fmt.Println(<-c)
 }
 ```
-# Defer
+## Defer
 
 TODO
 
-# WaitGroup
+## WaitGroup
 
 TODO
+
+## Pacotes
+
+TODO
+
 
 ## Go Modules: Gerenciamento de Dependências
 

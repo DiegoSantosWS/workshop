@@ -47,8 +47,8 @@
 
 9. [Concorrência](dia_03#concorrência)
 
-    1. [Goroutines](dia_03#goroutine)
-    2. [Defer](dia_3#defer)
+    1. [Goroutines](dia_03#goroutines)
+    2. [Defer](dia_03#defer)
     3. [WaitGroup](dia_03#waitgroup)
 
 10. [Pacotes](dia_03#pacotes)
