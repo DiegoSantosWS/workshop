@@ -92,11 +92,11 @@ func main() {
 	fmt.Println(<-c)
 }
 ```
-## Defer
+### Defer
 
 TODO
 
-## WaitGroup
+### WaitGroup
 
 TODO
 
