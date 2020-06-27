@@ -36,27 +36,28 @@
     1. [Struct nomeada](dia_02#struct-nomeada)
     2. [Struct anônima](dia_02#struct-anônima)
     
-7. [Funções](dia_02/funcoes.md#funções)
+7. [Funções](dia_02#funções)
 
-    1. [Erros](dia_02/funcoes.md#erros)
-    2. [Métodos](dia_02/funcoes.md#métodos)
+    1. [Erros](dia_02#erros)
+    2. [Métodos](dia_02#métodos)
 
-8. [Interfaces](dia_02/interfaces.md#interfaces)
+8. [Interfaces](dia_02#interfaces)
 
 ## [DIA 03](dia_3#dia-3)
 
-9. [Concorrência](dia_3/concorrencia.md#concorrência)
+9. [Concorrência](dia_3#concorrência)
 
-    1. [Goroutines](dia_3/concorrencia.md#goroutine)
-    2. [Defer](dia_3/concorrencia.md#defer)
-    3. [WaitGroup](dia_3/concorrencia.md#waitgroup)
+    1. [Goroutines](dia_3#goroutine)
+    2. [Defer](dia_3#defer)
+    3. [WaitGroup](dia_3#waitgroup)
 
-10. [Pacotes](dia_3/concorrencia.md#pacotes)
+10. [Pacotes](dia_3#pacotes)
 
-11. Gerenciamento de dependências
+11. [Gerenciamento de dependências](dia_3#go-modules-gerenciamento-de-dependências)
 
-12. API
+12. [Projeto](dia_3#projeto)
 
-    1. Rest API
-    2. API em Go com net/HTTP
-    3. JSON
+    1. [API](dia_3#api)
+    2. [API Rest](dia_3#api-rest)
+    3. [API em Go com net/HTTP](dia_3#api-em-go-com-nethttp)
+    4. [Referências](dia_3##referências)
