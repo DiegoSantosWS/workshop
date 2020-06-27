@@ -43,19 +43,19 @@
 
 8. [Interfaces](dia_02#interfaces)
 
-## [DIA 03](dia_3#dia-3)
+## [DIA 03](dia_03#dia-03)
 
-9. [Concorrência](dia_3#concorrência)
+9. [Concorrência](dia_03#concorrência)
 
-    1. [Goroutines](dia_3#goroutine)
+    1. [Goroutines](dia_03#goroutine)
     2. [Defer](dia_3#defer)
-    3. [WaitGroup](dia_3#waitgroup)
+    3. [WaitGroup](dia_03#waitgroup)
 
-10. [Pacotes](dia_3#pacotes)
+10. [Pacotes](dia_03#pacotes)
 
-11. [Gerenciamento de dependências](dia_3#go-modules-gerenciamento-de-dependências)
+11. [Gerenciamento de dependências](dia_03#go-modules-gerenciamento-de-dependências)
 
-12. [Projeto](dia_3#projeto)
+12. [Projeto](dia_03#projeto)
 
     1. [API](dia_3#api)
     2. [API Rest](dia_3#api-rest)
