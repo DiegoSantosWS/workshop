@@ -122,22 +122,16 @@ O lançamento da versão 1.13 possibilitou a criação do diretório do projeto 
 
 Esta é uma grande mudança em relação as versões anteriores do Go (pré-1.11), onde a prática recomendada era criar o diretório dos projetos dentro de uma pasta `src` sob o diretório `GOPATH`, conforme mostrado a seguir:
 
-```bash
-$GOPATH
-├── bin
-├── pkg
-└── src
-    └── github.com
-        └── <usuário github>
-            └── <projeto>
-```
+![Estrutura $GOPATH](img/gopath_structure.png)
 
 Nessa estrutura, os diretórios possuem as seguintes funções:
+
 - `bin`: Guardar os executáveis de nossos programas;
 - `pkg`: Guardar nossas bibliotecas e bibliotecas de terceiros;
 - `src`: Guardar todo o código dos nossos projetos.
 
 De forma resumida:
+
 - Versões pré-1.11: A recomendação é criar o diretório do projeto sob o diretório `GOPATH`;
 - Versões pós-1.11 e pré-1.13: A recomendção é criar o diretório do projeto fora do `GOPATH`;
 - Versão 1.13: O diretório do projeto pode ser criado em qualquer lugar no computador.

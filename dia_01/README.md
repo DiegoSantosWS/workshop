@@ -2,8 +2,9 @@
 
 ## O que é Go
 
-> _"Go é uma linguagem de programação de código aberto que facilita a criação de software **simples**, **confiável** e **eficiente**"._
->> <cite>[golang.org][1]</cite>
+> _"Go é uma linguagem de programação de código aberto que facilita a criação de software **simples**, **confiável** e **eficiente**"_ 
+>
+> **[golang.org][1]**
 
 ### Um pouco de história
 
@@ -45,7 +46,7 @@ Go foi escrito especialmente para a nuvem. Em Go todas as bibliotecas e dependê
 Como o Go é estaticamente e fortemente tipada, isso implica que você precisa ser explícito no tipo de dados que está passando e também significa que o compilador conhece o tipo de cada variável, respectivamente.
 
 #### Coleta de lixo
-Go possui um coletor de lixo (_Garbage Colletion_) para gerenciamento automático de memória. Esse recurso de GC faz a alocação e a remoção de objetos sem nenhuma pausa e, portanto, aumenta a eficiência das aplicações.
+Go possui um coletor de lixo (_Garbage Collector_) para gerenciamento automático de memória. Esse recurso de GC faz a alocação e a remoção de objetos sem nenhuma pausa e, portanto, aumenta a eficiência das aplicações.
 
 #### Biblioteca Padrão Poderosa
 A biblioteca padrão muito é poderosa e cheia de recursos. Com ela é possível facilmente construir um servidor Web, manipular E/S, criptografia e é claro, criar testes, dos quais falaremos mais ao longo do workshop.
@@ -801,6 +802,3 @@ fmt.Println(naves)
 
 
 [1]:https://golang.org/
-
-
-[DIA 02 :fast_forward:](../dia_02#dia-02)
